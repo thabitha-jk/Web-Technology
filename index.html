@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>SEVENTEEN – Carat Fan Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- SEVENTEEN K-Pop Group Fan Page - HTML5 Experiment -->
   <style>
     body {
       margin: 0;
@@ -20,6 +19,7 @@
     nav ul {
       list-style: none;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
       padding: 0;
@@ -28,13 +28,18 @@
       text-decoration: none;
       color: #8e24aa;
       font-weight: bold;
+      cursor: pointer;
     }
     nav a:hover {
       color: #c2185b;
     }
     section {
+      display: none;
       padding: 2rem;
       text-align: center;
+    }
+    section.active {
+      display: block;
     }
     img.main-img {
       max-width: 90%;
@@ -56,16 +61,79 @@
     th {
       background-color: #f8bbd0;
       color: #6a1b9a;
-    }
+
+
+  }
     ul.songlist {
       text-align: left;
       max-width: 600px;
       margin: 0 auto;
       list-style-type: square;
     }
-    .note {
-      color: #666;
-      font-size: 0.9em;
+    form input, form textarea, form select {
+      width: 100%;
+      max-width: 500px;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      background: #c2185b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+form label {
+  align-self: flex-start;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+form input,
+form textarea,
+form select {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form progress {
+  width: 100%;
+  max-width: 500px;
+  height: 15px;
+  border-radius: 8px;
+}
+
+form button {
+  margin: 10px 10px 0 10px;
+  padding: 10px 20px;
+  background: #c2185b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #a3154d;
+}
+
+     {
+      color: #6a1b9a;
     }
   </style>
 </head>
@@ -76,53 +144,56 @@
     <p>A tribute by a proud <strong>Carat</strong></p>
     <nav>
       <ul>
-        <li><a href="#members">Members</a></li>
-        <li><a href="#carat">Carat Love</a></li>
-        <li><a href="#bongbongie">Bongbongie</a></li>
-        <li><a href="#music">Songs</a></li>
-        
-
+        <li><a onclick="showSection('carat')">Carat Love</a></li>
+        <li><a onclick="showSection('caratbomb')">Carat Bomb</a></li>
+        <li><a onclick="showSection('bongbongie')">Bongbongie</a></li>
+        <li><a onclick="showSection('members')">Members</a></li>
+        <li><a onclick="showSection('music')">Songs</a></li>
+        <li><a onclick="showSection('videos')">Videos</a></li>
+        <li><a onclick="showSection('message')">Message</a></li>
+        <li><a onclick="showSection('register')">Register</a></li>
       </ul>
     </nav>
   </header>
 
-
-  <section id="carat">
+  <!-- Carat Love -->
+  <section id="carat" class="active">
     <h2>💖 SEVENTEEN x CARATS 💖</h2>
-    <img class="main-img" src="SEVENTEEN_.jpg" alt="“Forever SEVENTEEN, Forever CARAT”
-    Always CARATs and SEVENTEEN Together 💗" width="800"
-    section id="carat">
-     <p>"Forever SEVENTEEN, Forever CARAT"
-    Always CARATs and SEVENTEEN Together 💗</p>
-     
-    <h2>💖 CARATS BONG LIGHTSTICK💖</h2>
-    <img class="main-img" src="carat_bomb.jpg" alt="Carat Bong Lightstick" width="600">
-    <p>Forever shining bright like diamonds. &hearts; #CARATs</p>
+    <img class="main-img" src="SEVENTEEN_.jpg" alt="Forever SEVENTEEN" width="800">
+    <p>"Forever SEVENTEEN, Forever CARAT" <br> Always CARATs and SEVENTEEN Together 💗</p>
   </section>
 
-  
+  <!-- Carat Bomb -->
+  <section id="caratbomb">
+    <h2>💡 CARAT BOMB LIGHTSTICK</h2>
+    <img class="main-img" src="carat_bomb.jpg" alt="Carat Bong Lightstick" width="600">
+    <p>Forever shining bright like diamonds. ♥ #CARATs</p>
+  </section>
+
+  <!-- Bongbongie -->
   <section id="bongbongie">
-    <h2>Bongbongie: The Official Mascot</h2>
-    <p>Bongbongie is SEVENTEEN’s adorable and iconic mascot loved by all Carats! 🐰</p>
+    <h2>🐰 Bongbongie: The Official Mascot</h2>
+    <p>Bongbongie is SEVENTEEN’s adorable and iconic mascot loved by all Carats!</p>
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9QLi7ekArDkh4yj7PJKj9zLbazyq0WM5gQA&s" alt="Bongbongie" width="200">
-</section>
+  </section>
 
-
+  <!-- Members -->
   <section id="members">
     <h2>🌟 SEVENTEEN Members by Unit</h2>
-    <img class="main-img" src="https://m.media-amazon.com/images/I/71beTqoV5SL._UF1000,1000_QL80_.jpg" alt="SEVENTEEN Members Image">
+    <img class="main-img" src="https://m.media-amazon.com/images/I/71beTqoV5SL._UF1000,1000_QL80_.jpg" alt="SEVENTEEN Members">
     <table>
       <thead>
         <tr><th>Unit</th><th>Members</th></tr>
       </thead>
       <tbody>
-        <tr><td>hiphop unit</td><td>S.Coups, Wonwoo, Mingyu, Vernon</td></tr>
-        <tr><td>Performance unit</td><td>Hoshi, Jun, The8, Dino</td></tr>
-        <tr><td>Vocal unit</td><td>Woozi, Jeonghan, Joshua, DK, Seungkwan</td></tr>
+        <tr><td>Hip-Hop Unit</td><td>S.Coups, Wonwoo, Mingyu, Vernon</td></tr>
+        <tr><td>Performance Unit</td><td>Hoshi, Jun, The8, Dino</td></tr>
+        <tr><td>Vocal Unit</td><td>Woozi, Jeonghan, Joshua, DK, Seungkwan</td></tr>
       </tbody>
     </table>
   </section>
 
+  <!-- Music -->
   <section id="music">
     <h2>🎶 SEVENTEEN's Top Songs</h2>
     <ul class="songlist">
@@ -135,33 +206,92 @@
       <li>Ready to Love</li>
       <li>Circles</li>
     </ul>
-
-     <section id="message">
-  <h2>💌 Send a Message to SEVENTEEN 💌</h2>
-  <form>
-    <label for="member">To (Member Name):</label><br>
-    <input type="text" id="member" name="member" placeholder="e.g., Hoshi, DK, Woozi" required><br><br>
-
-    <label for="message">Your Message:</label><br>
-    <textarea id="message" name="message" rows="6" cols="50" placeholder="Write your love and support here 💖" required></textarea><br><br>
-
-    <button type="submit">Send Message ✨</button>
-  </form>
-</section>
-
-
-    <section id="contact">
-        <h2>Contact Fanbase</h2>
-        <p>Follow SEVENTEEN on <a href="https://instagram.com/saythename_17" target="_blank">Instagram</a> or <a href="https://weverse.io/seventeen" target="_blank">Weverse</a>.</p>
-    </section>
-
-    <p>Learn more about SEVENTEEN on <a href="https://en.wikipedia.org/wiki/Seventeen_(South_Korean_band)" target="_blank">Wikipedia</a>.</p>
+    <h3>🎧 Sample Audio</h3>
+    <audio controls>
+      <source src="sample-song.mp3" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
   </section>
 
+  <!-- Videos -->
+  <section id="videos">
+    <h2>🎥 Music Video</h2>
+    <video width="500" controls>
+      <source src="sample-video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </section>
+
+  <!-- Message -->
+  <section id="message">
+    <h2>💌 Send a Message to SEVENTEEN 💌</h2>
+    <form>
+      <label for="member">To (Member Name):</label>
+      <input type="text" id="member" name="member" placeholder="e.g., Hoshi, DK, Woozi" required>
+      <label for="messageText">Your Message:</label>
+      <textarea id="messageText" name="message" rows="6" placeholder="Write your love and support here 💖" required></textarea>
+      <button type="submit">Send Message ✨</button>
+    </form>
+
+    <h2>📞 Contact Fanbase</h2>
+    <p>Follow SEVENTEEN on 
+      <a href="https://instagram.com/saythename_17" target="_blank">Instagram</a> or 
+      <a href="https://weverse.io/seventeen" target="_blank">Weverse</a>.
+    </p>
+    <p>Learn more on 
+      <a href="https://en.wikipedia.org/wiki/Seventeen_(South_Korean_band)" target="_blank">Wikipedia</a>.
+    </p>
+  </section>
+
+  <!-- Register -->
+  <section id="register">
+  <h2>📝 Online Registration Form</h2>
+  <form action="/serverlogic" method="post">
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" name="name" required placeholder="Your Name" autofocus/>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required placeholder="you@example.com"/>
+
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" required/>
+
+    <label for="tel">Phone Number:</label>
+    <input type="tel" id="tel" name="tel" pattern="[0-9]{10}" required placeholder="10-digit number"/>
+
+    <label for="favsong">Favorite Song:</label>
+    <input type="search" id="favsong" name="favsong" placeholder="Search your favorite song"/>
+
+    <label for="url">Fan Blog URL:</label>
+    <input type="url" id="url" name="url" placeholder="https://yourfanblog.com"/>
+
+    <label for="upload">Upload Artwork:</label>
+    <input type="file" id="upload" name="upload" required/>
+
+    <label for="message">Why do you love this artist?</label>
+    <textarea id="message" name="message" required placeholder="Write your reason here..."></textarea>
+
+    <label for="rating">Fan Passion Meter:</label>
+    <progress id="rating" value="80" max="100">80%</progress>
+
+    <br><br>
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+  </form>
+</section>
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 SEVENTEEN Fan Page | Created with 💜 by a Carat</p>
   </footer>
 
+  <!-- JavaScript to toggle sections -->
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll("section");
+      sections.forEach(section => section.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+  </script>
+
 </body>
 </html>
-
