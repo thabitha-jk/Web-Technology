@@ -1,527 +1,1075 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>SEVENTEEN – Carat Fan Page</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    /* --- General Body and Font Styles --- */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      transition: background 0.5s ease-in-out; /* Smooth transition for background change */
-    }
 
-    /* --- Login Page Styles --- */
-    #login-container {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: url('SEVENTEEN.jpg') no-repeat center center/cover; /* Corrected image URL */
-    }
+  <meta charset="UTF-8" />
 
-    .login-box {
-      width: 320px;
-      padding: 20px;
-      border-radius: 15px;
-      background: rgba(255, 255, 255, 0.2);
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(8px);
-      color: white;
-    }
+  <title>SEVENTEEN – Carat Fan Page</title>
 
-    .login-box h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    .login-box input {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 8px;
-      outline: none;
-    }
+  <style>
 
-    .login-box input[type="text"],
-    .login-box input[type="password"] {
-      background: rgba(255, 255, 255, 0.3);
-      color: white;
-    }
+    /* --- Login Page Styles --- */
 
-    .login-box input[type="submit"] {
-      background: #ff91c1;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
+    body {
 
-    .login-box input[type="submit"]:hover {
-      background: #ff6fa9;
-    }
+      margin: 0;
 
-    /* --- Fan Page Styles (after login) --- */
-    body.fan-page-active {
-      background: linear-gradient(to right, #ffd1dc, #cceeff); /* Gradient background for fan page */
-      color: #333;
-      height: auto;
-      display: block;
-    }
+      padding: 0;
 
-    #main-content {
-      display: none; /* Initially hide main content */
-    }
+      font-family: Arial, sans-serif;
 
-    header, footer {
-      background-color: #ffffffaa;
-      text-align: center;
-      padding: 1rem;
-    }
-    
-    nav ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      padding: 0;
-    }
-    
-    nav a {
-      text-decoration: none;
-      color: #8e24aa;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    
-    nav a:hover {
-      color: #c2185b;
-    }
-    
-    section {
-      display: none; /* Hide all sections by default */
-      padding: 2rem;
-      text-align: center;
-    }
-    
-    section.active {
-      display: block; /* Show the active section */
-    }
-    
-    img.main-img {
-      max-width: 90%;
-      border-radius: 12px;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-      margin: 20px auto;
-    }
-    
-    table {
-      width: 80%;
-      margin: 2rem auto;
-      border-collapse: collapse;
-      background: #fff9fa;
-    }
-    
-    th, td {
-      border: 1px solid #aaa;
-      padding: 12px;
-      text-align: center;
-    }
-    
-    th {
-      background-color: #f8bbd0;
-      color: #6a1b9a;
-    }
-    
-    ul.songlist {
-      text-align: left;
-      max-width: 600px;
-      margin: 0 auto;
-      list-style-type: square;
-    }
-    
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    }
-    
-    form label {
-      align-self: flex-start;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    
-    form input,
-    form textarea,
-    form select {
-      width: 100%;
-      max-width: 500px;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    
-    form progress {
-      width: 100%;
-      max-width: 500px;
-      height: 15px;
-      border-radius: 8px;
-    }
-    
-    button, .login-box input[type="submit"] {
-      padding: 10px 20px;
-      margin: 10px 10px 0 10px;
-      background: #c2185b;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    
-    button:hover {
-      background-color: #a3154d;
-    }
-    
-    /* --- About Section Specific Styles --- */
-    #about {
-      text-align: left;
-    }
-    
-    #about .about-container {
-      max-width: 900px;
-      margin: 0 auto;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 24px;
-      border-radius: 10px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    }
-    
-    #about h2 { text-align: center; color: #6a1b9a; }
-    #about h3 { color: #8e24aa; margin-top: 1rem; }
-    #about p { line-height: 1.6; margin: 0.6rem 0; }
-    #about ul { margin-left: 1.25rem; }
-    
-    .member-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-      margin-top: 0.5rem;
-    }
-    
-    /* --- Responsive design for smaller screens --- */
-    @media (max-width: 600px) {
-      #about .about-container { padding: 16px; }
-    }
-  </style>
+      background: url('#SEVENTEEN.jpg') no-repeat center center/cover;
+
+      height: 100vh;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+    }
+
+
+
+    .login-box {
+
+      width: 320px;
+
+      padding: 20px;
+
+      border-radius: 15px;
+
+      background: rgba(255, 255, 255, 0.2);
+
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+
+      backdrop-filter: blur(8px);
+
+      color: white;
+
+    }
+
+
+
+    .login-box h2 {
+
+      text-align: center;
+
+      margin-bottom: 20px;
+
+    }
+
+
+
+    .login-box input {
+
+      width: 100%;
+
+      padding: 10px;
+
+      margin: 10px 0;
+
+      border: none;
+
+      border-radius: 8px;
+
+      outline: none;
+
+    }
+
+
+
+    .login-box input[type="text"],
+
+    .login-box input[type="password"] {
+
+      background: rgba(255, 255, 255, 0.3);
+
+      color: white;
+
+    }
+
+
+
+    .login-box input[type="submit"] {
+
+      background: #ff91c1;
+
+      color: white;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      transition: background 0.3s;
+
+    }
+
+
+
+    .login-box input[type="submit"]:hover {
+
+      background: #ff6fa9;
+
+    }
+
+
+
+    /* --- Fan Page Styles --- */
+
+    body.fan-page-active {
+
+      background: linear-gradient(to right, #ffd1dc, #cceeff);
+
+      color: #333;
+
+      height: auto;
+
+      display: block;
+
+    }
+
+    
+
+    #main-content {
+
+        display: none;
+
+    }
+
+    
+
+    header, footer {
+
+      background-color: #ffffffaa;
+
+      text-align: center;
+
+      padding: 1rem;
+
+    }
+
+    nav ul {
+
+      list-style: none;
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      justify-content: center;
+
+      gap: 1rem;
+
+      padding: 0;
+
+    }
+
+    nav a {
+
+      text-decoration: none;
+
+      color: #8e24aa;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+    }
+
+    nav a:hover {
+
+      color: #c2185b;
+
+    }
+
+    section {
+
+      display: none;
+
+      padding: 2rem;
+
+      text-align: center;
+
+    }
+
+    section.active {
+
+      display: block;
+
+    }
+
+    img.main-img {
+
+      max-width: 90%;
+
+      border-radius: 12px;
+
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+
+      margin: 20px auto;
+
+    }
+
+    table {
+
+      width: 80%;
+
+      margin: 2rem auto;
+
+      border-collapse: collapse;
+
+      background: #fff9fa;
+
+    }
+
+    th, td {
+
+      border: 1px solid #aaa;
+
+      padding: 12px;
+
+      text-align: center;
+
+    }
+
+    th {
+
+      background-color: #f8bbd0;
+
+      color: #6a1b9a;
+
+    }
+
+    ul.songlist {
+
+      text-align: left;
+
+      max-width: 600px;
+
+      margin: 0 auto;
+
+      list-style-type: square;
+
+    }
+
+    form input, form textarea, form select {
+
+      width: 100%;
+
+      max-width: 500px;
+
+      padding: 10px;
+
+      margin: 10px 0;
+
+    }
+
+    button {
+
+      padding: 10px 20px;
+
+      margin-top: 10px;
+
+      background: #c2185b;
+
+      color: white;
+
+      border: none;
+
+      border-radius: 5px;
+
+    }
+
+
+
+    form {
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      padding: 20px;
+
+    }
+
+
+
+    form label {
+
+      align-self: flex-start;
+
+      margin-top: 10px;
+
+      font-weight: bold;
+
+    }
+
+
+
+    form input,
+
+    form textarea,
+
+    form select {
+
+      width: 100%;
+
+      max-width: 500px;
+
+      padding: 10px;
+
+      margin-bottom: 10px;
+
+      border: 1px solid #ccc;
+
+      border-radius: 5px;
+
+    }
+
+
+
+    form progress {
+
+      width: 100%;
+
+      max-width: 500px;
+
+      height: 15px;
+
+      border-radius: 8px;
+
+    }
+
+
+
+    form button {
+
+      margin: 10px 10px 0 10px;
+
+      padding: 10px 20px;
+
+      background: #c2185b;
+
+      color: white;
+
+      border: none;
+
+      border-radius: 5px;
+
+      cursor: pointer;
+
+    }
+
+
+
+    form button:hover {
+
+      background-color: #a3154d;
+
+    }
+
+    
+
+    #about {
+
+      padding: 2rem;
+
+      text-align: left;
+
+      color: #222;
+
+    }
+
+    #about .about-container {
+
+      max-width: 900px;
+
+      margin: 0 auto;
+
+      background: rgba(255,255,255,0.9);
+
+      padding: 24px;
+
+      border-radius: 10px;
+
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+
+    }
+
+    #about h2 { text-align: center; color: #6a1b9a; }
+
+    #about h3 { color: #8e24aa; margin-top: 1rem; }
+
+    #about p { line-height: 1.6; margin: 0.6rem 0; }
+
+    #about ul { margin-left: 1.25rem; }
+
+    .member-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+      gap: 12px;
+
+      margin-top: 0.5rem;
+
+    }
+
+    /* small-screen tweaks */
+
+    @media (max-width:600px){
+
+      #about .about-container { padding: 16px; }
+
+    }
+
+  </style>
+
 </head>
+
 <body>
 
-  <div id="login-container">
-    <div class="login-box">
-      <h2>Carat Login</h2>
-      <form id="login-form">
-        <input type="text" placeholder="Username" required />
-        <input type="password" placeholder="Password" required />
-        <input type="submit" value="Login" />
-      </form>
-    </div>
-  </div>
 
-  <div id="main-content">
-    <header>
-      <h1>💎 SEVENTEEN Fan Page 💎</h1>
-      <p>A tribute by a proud <strong>Carat</strong></p>
-      <nav>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#carat">Carat Love</a></li>
-          <li><a href="#caratbomb">Carat Bomb</a></li>
-          <li><a href="#bongbongie">Bongbongie</a></li>
-          <li><a href="#members">Members</a></li>
-          <li><a href="#music">Songs</a></li>
-          <li><a href="#videos">Videos</a></li>
-          <li><a href="#message">Message</a></li>
-          <li><a href="#register">Register</a></li>
-        </ul>
-      </nav>
-    </header>
 
-    <section id="about">
-      <div class="about-container">
-        <h2>📚 About SEVENTEEN (세븐틴 / SVT)</h2>
-        <h3>Overview</h3>
-        <p>
-          Seventeen (Korean: 세븐틴; stylized in all caps or as SVT) is a South Korean boy band formed by
-          Pledis Entertainment. The group consists of thirteen members: S.Coups, Jeonghan, Joshua, Jun,
-          Hoshi, Wonwoo, Woozi, DK, Mingyu, The8, Seungkwan, Vernon, and Dino. Throughout their career,
-          they have reached a large audience and grown into an internationally recognized K-pop group
-          known for signature music and performances.
-        </p>
-        <h3>Debut & Major Records</h3>
-        <p>
-          The group debuted on <strong>May 26, 2015</strong>, with the EP <em>17 Carat</em>, which became
-          the longest-charting K-pop album of the year in the US and the only rookie album included in
-          Billboard's "10 Best K-Pop Albums of 2015". Their 2023 EPs <em>FML</em> and
-          <em>Seventeenth Heaven</em> set sales records; <em>FML</em> brought their first MAMA Album of
-          the Year and became one of the year's best-selling albums worldwide.
-        </p>
-        <h3>Self-Producing Identity</h3>
-        <p>
-          Seventeen is widely regarded as a "self-producing" idol group — members contribute to songwriting,
-          music production, and choreography. They are divided into three specialized units: hip-hop,
-          vocal, and performance, while also promoting as a full group. Their stage work and synchronization
-          have earned them nicknames such as "Performance Kings" and "Kings of Synchronization."
-        </p>
-        <h3>Name & Fanclub</h3>
-        <p>
-          The name "Seventeen" comes from the idea <em>"13 members + 3 teams + 1 group"</em>. Their official
-          fanclub name is <strong>Carat</strong>, announced on February 14, 2016 — a nod to their debut EP
-          <em>17 Carat</em> and the song "Shining Diamond".
-        </p>
-        <h3>History — Highlights</h3>
-        <p><strong>Pre-debut & debut (2013–2016):</strong> appeared on Seventeen TV and the reality show
-          <em>Seventeen Project: Big Debut Plan</em>. Official debut: May 26, 2015. Releases: <em>17 Carat</em>,
-          <em>Boys Be</em>, and first studio album <em>Love & Letter</em>.</p>
+  <div id="login-container">
 
-        <p><strong>2017–2020:</strong> Released albums like <em>Al1</em>, <em>Teen, Age</em>, and
-          <em>An Ode</em>. International touring and Japanese releases; completed large-scale world tours.
-          <em>An Ode</em> won Album of the Year (Daesang) and was praised by Billboard.</p>
+    <div class="login-box">
 
-        <p><strong>2020–2021:</strong> Continued major releases (e.g., <em>Heng:garæ</em>, <em>Semicolon</em>),
-          became million-sellers, and expanded international activities signing with Geffen / UMG for
-          global distribution.</p>
+      <h2>Carat Login</h2>
 
-        <p><strong>2022–2023:</strong> <em>Face the Sun</em> era, global tours (Be The Sun), first film,
-          huge album preorders for <em>FML</em> and <em>Seventeenth Heaven</em>, and multiple record-setting
-          sales and awards.</p>
+      <form id="login-form">
 
-        <p><strong>2024–2025:</strong> Continued active touring (Right Here World Tour, New_ World Tour),
-          high-profile festival appearances (e.g., Glastonbury 2024), and album releases including
-          <em>Happy Burstday</em> (2025).</p>
+        <input type="text" placeholder="Username" required />
 
-        <h3>Members & Units (summary)</h3>
-        <div class="member-grid">
-          <div>
-            <strong>Hip-hop Unit</strong><br>
-            S.Coups (leader), Mingyu, Vernon, Wonwoo (inactive during military service notes)
-          </div>
-          <div>
-            <strong>Vocal Unit</strong><br>
-            Woozi (unit leader), Joshua, DK, Seungkwan, Jeonghan (inactive during military service notes)
-          </div>
-          <div>
-            <strong>Performance Unit</strong><br>
-            Hoshi (unit leader), Jun, The8, Dino
-          </div>
-        </div>
-        <h3>Sub-units & Solo Work</h3>
-        <p>
-          Notable sub-units include <strong>BSS (BooSeokSoon)</strong>, <strong>JxW</strong>, and
-          the duo <strong>Hoshi X Woozi</strong>. Members also participate in solo projects and the
-          ongoing "Thirteen Tapes" releases.
-        </p>
-        <h3>Artistry & Choreography</h3>
-        <p>
-          Seventeen's musical identity is shaped by heavy member involvement in writing and producing (notably
-          Woozi) and elaborate choreographies often co-produced by Hoshi. Their lyrics frequently touch on
-          relatable themes like growth, perseverance, and comfort.
-        </p>
-        <h3>Other Ventures & Endorsements</h3>
-        <p>
-          Seventeen have collaborated with global brands (Apple, Cigna, Lazada, Bibigo, etc.), acted as ambassadors,
-          and appeared in major campaigns and endorsements across Asia and internationally.
-        </p>
-        <h3>Philanthropy & UNESCO</h3>
-        <p>
-          The group regularly donates to charitable causes and partners with UNESCO for education initiatives.
-          In 2023 they were named UNESCO Goodwill Ambassadors for Youth and pledged support for global youth projects.
-        </p>
-        <h3>Awards & Recognition</h3>
-        <p>
-          Multiple domestic and international awards, including MAMA Album of the Year (for 2023 & 2024 albums),
-          Prime Minister's Commendation, MTV recognitions, and many year-end Bonsang/Daesang awards.
-        </p>
-        <h3>Selected Discography (Studio Albums)</h3>
-        <ul>
-          <li>Love & Letter (2016)</li>
-          <li>Teen, Age (2017)</li>
-          <li>An Ode (2019)</li>
-          <li>Face the Sun (2022)</li>
-          <li>Happy Burstday (2025)</li>
-        </ul>
-        <h3>Major Tours</h3>
-        <ul>
-          <li>Shining Diamonds Tour (2016)</li>
-          <li>Diamond Edge World Tour (2017)</li>
-          <li>Ode to You World Tour (2019–2020)</li>
-          <li>Be The Sun World Tour (2022)</li>
-          <li>Right Here World Tour (2024–2025)</li>
-          <li>New_ World Tour (2025)</li>
-        </ul>
-        <p style="margin-top: 1rem;">
-          <em>Note:</em> This section condenses a long biography/history. If you want the full long article split
-          into subsections with "read more" <a href="https://en.wikipedia.org/wiki/Seventeen_(South_Korean_band)">https://en.wikipedia.org/wiki/Seventeen_(South_Korean_band)</a>.
-        </p>
-      </div>
-    </section>
+        <input type="password" placeholder="Password" required />
 
-    <section id="carat" class="active">
-      <h2>💖 SEVENTEEN x CARATS 💖</h2>
-      <img class="main-img" src="https://i.pinimg.com/736x/c0/c5/42/c0c542c332d733156637efdd62e92c68.jpg" alt="Forever SEVENTEEN" width="800">
-      <p>"Forever SEVENTEEN, Forever CARAT" <br> Always CARATs and SEVENTEEN Together 💗</p>
-    </section>
+        <input type="submit" value="Login" />
 
-    <section id="caratbomb">
-      <h2>💡 CARAT BOMB LIGHTSTICK</h2>
-      <img class="main-img" src="https://i.pinimg.com/originals/a0/0b/40/a00b40280b2a76f6259ac8152e105e94.jpg" alt="Carat Bong Lightstick" width="600">
-      <p>Forever shining bright like diamonds. ♥ #CARATs</p>
-    </section>
+      </form>
 
-    <section id="bongbongie">
-      <h2>🐰 Bongbongie: The Official Mascot</h2>
-      <p>Bongbongie is SEVENTEEN’s adorable and iconic mascot loved by all Carats!</p>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9QLi7ekArDkh4yj7PJKj9zLbazyq0WM5gQA&s" alt="Bongbongie" width="200">
-    </section>
+    </div>
 
-    <section id="members">
-      <h2>🌟 SEVENTEEN Members by Unit</h2>
-      <img class="main-img" src="https://m.media-amazon.com/images/I/71beTqoV5SL._UF1000,1000_QL80_.jpg" alt="SEVENTEEN Members">
-      <table>
-        <thead>
-          <tr><th>Unit</th><th>Members</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Hip-Hop Unit</td><td>S.Coups, Wonwoo, Mingyu, Vernon</td></tr>
-          <tr><td>Performance Unit</td><td>Hoshi, Jun, The8, Dino</td></tr>
-          <tr><td>Vocal Unit</td><td>Woozi, Jeonghan, Joshua, DK, Seungkwan</td></tr>
-        </tbody>
-      </table>
-    </section>
+  </div>
 
-    <section id="music">
-      <h2>🎶 SEVENTEEN's Top Songs</h2>
-      <ul class="songlist">
-        <li>Don't Wanna Cry</li>
-        <li>Very Nice (아주 NICE)</li>
-        <li>Hot</li>
-        <li>Left & Right</li>
-        <li>Super</li>
-        <li>Clap</li>
-        <li>Ready to Love</li>
-        <li>Circles</li>
-      </ul>
-      <h3>🎧 MAESTRO </h3>
-      <audio controls>
-        <source src="https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-      </audio>
-    </section>
 
-    <section id="videos">
-      <h2>🎥 Music Video</h2>
-      <video width="500" controls>
-        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </section>
 
-    <section id="message">
-      <h2>💌 Send a Message to SEVENTEEN 💌</h2>
-      <form>
-        <label for="member">To (Member Name):</label>
-        <input type="text" id="member" name="member" placeholder="e.g., Hoshi, DK, Woozi" required>
-        <label for="messageText">Your Message:</label>
-        <textarea id="messageText" name="message" rows="6" placeholder="Write your love and support here 💖" required></textarea>
-        <button type="submit">Send Message ✨</button>
-      </form>
+  <div id="main-content">
 
-      <h2>📞 Contact Fanbase</h2>
-      <p>Follow SEVENTEEN on
-        <a href="https://instagram.com/saythename_17" target="_blank">Instagram</a> or
-        <a href="https://weverse.io/seventeen" target="_blank">Weverse</a>.
-      </p>
-      <p>Learn more on
-        <a href="https://en.wikipedia.org/wiki/Seventeen_(South_Korean_band)" target="_blank">Wikipedia</a>.
-      </p>
-    </section>
+    <header>
 
-    <section id="register">
-      <h2>📝 Online Registration Form</h2>
-      <form action="/serverlogic" method="post">
-        <label for="name">Full Name:</label>
-        <input type="text" id="name" name="name" required placeholder="Your Name" autofocus/>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required placeholder="you@example.com"/>
-        <label for="dob">Date of Birth:</label>
-        <input type="date" id="dob" name="dob" required/>
-        <label for="tel">Phone Number:</label>
-        <input type="tel" id="tel" name="tel" pattern="[0-9]{10}" required placeholder="10-digit number"/>
-        <label for="favsong">Favorite Song:</label>
-        <input type="search" id="favsong" name="favsong" placeholder="Search your favorite song"/>
-        <label for="url">Fan Blog URL:</label>
-        <input type="url" id="url" name="url" placeholder="https://yourfanblog.com"/>
-        <label for="upload">Upload Artwork:</label>
-        <input type="file" id="upload" name="upload" required/>
-        <label for="message">Why do you love this artist?</label>
-        <textarea id="message" name="message" required placeholder="Write your reason here..."></textarea>
-        <label for="rating">Fan Passion Meter:</label>
-        <progress id="rating" value="80" max="100">80%</progress>
-        <br><br>
-        <button type="submit">Submit</button>
-        <button type="reset">Reset</button>
-      </form>
-    </section>
+      <h1>💎 SEVENTEEN Fan Page 💎</h1>
 
-    <footer>
-      <p>&copy; 2025 SEVENTEEN Fan Page | Created with 💜 by a Carat</p>
-    </footer>
-  </div>
+      <p>A tribute by a proud <strong>Carat</strong></p>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const loginContainer = document.getElementById('login-container');
-      const mainContent = document.getElementById('main-content');
-      const loginForm = document.getElementById('login-form');
-      const body = document.body;
+      <nav>
 
-      // When the login form is submitted
-      loginForm.addEventListener('submit', (event) => {
-        event.preventDefault(); // Prevents the default form submission (page refresh)
-        loginContainer.style.display = 'none'; // Hide the login page
-        mainContent.style.display = 'block'; // Show the main fan page
-        body.classList.add('fan-page-active'); // Apply the fan page background and layout
-      });
+        <ul>
 
-      // Handle navigation clicks to show/hide sections
-      const links = document.querySelectorAll('nav a');
-      links.forEach(link => {
-        link.addEventListener('click', (event) => {
-          event.preventDefault();
-          const targetId = link.getAttribute('href').substring(1);
-          const sections = document.querySelectorAll('section');
-          
-          // Remove 'active' class from all sections
-          sections.forEach(section => {
-            section.classList.remove('active');
-          });
-          
-          // Add 'active' class to the targeted section
-          document.getElementById(targetId).classList.add('active');
-        });
-      });
-      
-      // Initially show the first section of the fan page
-      document.getElementById('carat').classList.add('active');
-    });
-  </script>
+          <li><a href="#about">About</a></li>
+
+          <li><a href="#carat">Carat Love</a></li>
+
+          <li><a href="#caratbomb">Carat Bomb</a></li>
+
+          <li><a href="#bongbongie">Bongbongie</a></li>
+
+          <li><a href="#members">Members</a></li>
+
+          <li><a href="#music">Songs</a></li>
+
+          <li><a href="#videos">Videos</a></li>
+
+          <li><a href="#message">Message</a></li>
+
+          <li><a href="#register">Register</a></li>
+
+        </ul>
+
+      </nav>
+
+    </header>
+
+
+
+    <section id="about">
+
+      <div class="about-container">
+
+        <h2>📚 About SEVENTEEN (세븐틴 / SVT)</h2>
+
+        <h3>Overview</h3>
+
+        <p>
+
+          Seventeen (Korean: 세븐틴; stylized in all caps or as SVT) is a South Korean boy band formed by
+
+          Pledis Entertainment. The group consists of thirteen members: S.Coups, Jeonghan, Joshua, Jun,
+
+          Hoshi, Wonwoo, Woozi, DK, Mingyu, The8, Seungkwan, Vernon, and Dino. Throughout their career,
+
+          they have reached a large audience and grown into an internationally recognized K-pop group
+
+          known for signature music and performances.
+
+        </p>
+
+
+
+        <h3>Debut & Major Records</h3>
+
+        <p>
+
+          The group debuted on <strong>May 26, 2015</strong>, with the EP <em>17 Carat</em>, which became
+
+          the longest-charting K-pop album of the year in the US and the only rookie album included in
+
+          Billboard's "10 Best K-Pop Albums of 2015". Their 2023 EPs <em>FML</em> and
+
+          <em>Seventeenth Heaven</em> set sales records; <em>FML</em> brought their first MAMA Album of
+
+          the Year and became one of the year's best-selling albums worldwide.
+
+        </p>
+
+
+
+        <h3>Self-Producing Identity</h3>
+
+        <p>
+
+          Seventeen is widely regarded as a "self-producing" idol group — members contribute to songwriting,
+
+          music production, and choreography. They are divided into three specialized units: hip-hop,
+
+          vocal, and performance, while also promoting as a full group. Their stage work and synchronization
+
+          have earned them nicknames such as "Performance Kings" and "Kings of Synchronization."
+
+        </p>
+
+
+
+        <h3>Name & Fanclub</h3>
+
+        <p>
+
+          The name "Seventeen" comes from the idea <em>"13 members + 3 teams + 1 group"</em>. Their official
+
+          fanclub name is <strong>Carat</strong>, announced on February 14, 2016 — a nod to their debut EP
+
+          <em>17 Carat</em> and the song "Shining Diamond".
+
+        </p>
+
+
+
+        <h3>History — Highlights</h3>
+
+        <p><strong>Pre-debut & debut (2013–2016):</strong> appeared on Seventeen TV and the reality show
+
+          <em>Seventeen Project: Big Debut Plan</em>. Official debut: May 26, 2015. Releases: <em>17 Carat</em>,
+
+          <em>Boys Be</em>, and first studio album <em>Love & Letter</em>.</p>
+
+
+
+        <p><strong>2017–2020:</strong> Released albums like <em>Al1</em>, <em>Teen, Age</em>, and
+
+          <em>An Ode</em>. International touring and Japanese releases; completed large-scale world tours.
+
+          <em>An Ode</em> won Album of the Year (Daesang) and was praised by Billboard.</p>
+
+
+
+        <p><strong>2020–2021:</strong> Continued major releases (e.g., <em>Heng:garæ</em>, <em>Semicolon</em>),
+
+          became million-sellers, and expanded international activities signing with Geffen / UMG for
+
+          global distribution.</p>
+
+
+
+        <p><strong>2022–2023:</strong> <em>Face the Sun</em> era, global tours (Be The Sun), first film,
+
+          huge album preorders for <em>FML</em> and <em>Seventeenth Heaven</em>, and multiple record-setting
+
+          sales and awards.</p>
+
+
+
+        <p><strong>2024–2025:</strong> Continued active touring (Right Here World Tour, New_ World Tour),
+
+          high-profile festival appearances (e.g., Glastonbury 2024), and album releases including
+
+          <em>Happy Burstday</em> (2025).</p>
+
+
+
+        <h3>Members & Units (summary)</h3>
+
+        <div class="member-grid">
+
+          <div>
+
+            <strong>Hip-hop Unit</strong><br>
+
+            S.Coups (leader), Mingyu, Vernon, Wonwoo (inactive during military service notes)
+
+          </div>
+
+          <div>
+
+            <strong>Vocal Unit</strong><br>
+
+            Woozi (unit leader), Joshua, DK, Seungkwan, Jeonghan (inactive during military service notes)
+
+          </div>
+
+          <div>
+
+            <strong>Performance Unit</strong><br>
+
+            Hoshi (unit leader), Jun, The8, Dino
+
+          </div>
+
+        </div>
+
+
+
+        <h3>Sub-units & Solo Work</h3>
+
+        <p>
+
+          Notable sub-units include <strong>BSS (BooSeokSoon)</strong>, <strong>JxW</strong>, and
+
+          the duo <strong>Hoshi X Woozi</strong>. Members also participate in solo projects and the
+
+          ongoing "Thirteen Tapes" releases.
+
+        </p>
+
+
+
+        <h3>Artistry & Choreography</h3>
+
+        <p>
+
+          Seventeen's musical identity is shaped by heavy member involvement in writing and producing (notably
+
+          Woozi) and elaborate choreographies often co-produced by Hoshi. Their lyrics frequently touch on
+
+          relatable themes like growth, perseverance, and comfort.
+
+        </p>
+
+
+
+        <h3>Other Ventures & Endorsements</h3>
+
+        <p>
+
+          Seventeen have collaborated with global brands (Apple, Cigna, Lazada, Bibigo, etc.), acted as ambassadors,
+
+          and appeared in major campaigns and endorsements across Asia and internationally.
+
+        </p>
+
+
+
+        <h3>Philanthropy & UNESCO</h3>
+
+        <p>
+
+          The group regularly donates to charitable causes and partners with UNESCO for education initiatives.
+
+          In 2023 they were named UNESCO Goodwill Ambassadors for Youth and pledged support for global youth projects.
+
+        </p>
+
+
+
+        <h3>Awards & Recognition</h3>
+
+        <p>
+
+          Multiple domestic and international awards, including MAMA Album of the Year (for 2023 & 2024 albums),
+
+          Prime Minister's Commendation, MTV recognitions, and many year-end Bonsang/Daesang awards.
+
+        </p>
+
+
+
+        <h3>Selected Discography (Studio Albums)</h3>
+
+        <ul>
+
+          <li>Love & Letter (2016)</li>
+
+          <li>Teen, Age (2017)</li>
+
+          <li>An Ode (2019)</li>
+
+          <li>Face the Sun (2022)</li>
+
+          <li>Happy Burstday (2025)</li>
+
+        </ul>
+
+
+
+        <h3>Major Tours</h3>
+
+        <ul>
+
+          <li>Shining Diamonds Tour (2016)</li>
+
+          <li>Diamond Edge World Tour (2017)</li>
+
+          <li>Ode to You World Tour (2019–2020)</li>
+
+          <li>Be The Sun World Tour (2022)</li>
+
+          <li>Right Here World Tour (2024–2025)</li>
+
+          <li>New_ World Tour (2025)</li>
+
+        </ul>
+
+
+
+        <p style="margin-top: 1rem;">
+
+          <em>Note:</em> This section condenses a long biography/history. If you want the full long article split
+
+          into subsections with "read more" <a href="https://en.wikipedia.org/wiki/Seventeen_(South_Korean_band)">https://en.wikipedia.org/wiki/Seventeen_(South_Korean_band)</a>.
+
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="carat" class="active">
+
+      <h2>💖 SEVENTEEN x CARATS 💖</h2>
+
+      <img class="main-img" src="https://i.pinimg.com/736x/c0/c5/42/c0c542c332d733156637efdd62e92c68.jpg" alt="Forever SEVENTEEN" width="800">
+
+      <p>"Forever SEVENTEEN, Forever CARAT" <br> Always CARATs and SEVENTEEN Together 💗</p>
+
+    </section>
+
+
+
+    <section id="caratbomb">
+
+      <h2>💡 CARAT BOMB LIGHTSTICK</h2>
+
+      <img class="main-img" src="https://i.pinimg.com/originals/a0/0b/40/a00b40280b2a76f6259ac8152e105e94.jpg" alt="Carat Bong Lightstick" width="600">
+
+      <p>Forever shining bright like diamonds. ♥ #CARATs</p>
+
+    </section>
+
+
+
+    <section id="bongbongie">
+
+      <h2>🐰 Bongbongie: The Official Mascot</h2>
+
+      <p>Bongbongie is SEVENTEEN’s adorable and iconic mascot loved by all Carats!</p>
+
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9QLi7ekArDkh4yj7PJKj9zLbazyq0WM5gQA&s" alt="Bongbongie" width="200">
+
+    </section>
+
+
+
+    <section id="members">
+
+      <h2>🌟 SEVENTEEN Members by Unit</h2>
+
+      <img class="main-img" src="https://m.media-amazon.com/images/I/71beTqoV5SL._UF1000,1000_QL80_.jpg" alt="SEVENTEEN Members">
+
+      <table>
+
+        <thead>
+
+          <tr><th>Unit</th><th>Members</th></tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr><td>Hip-Hop Unit</td><td>S.Coups, Wonwoo, Mingyu, Vernon</td></tr>
+
+          <tr><td>Performance Unit</td><td>Hoshi, Jun, The8, Dino</td></tr>
+
+          <tr><td>Vocal Unit</td><td>Woozi, Jeonghan, Joshua, DK, Seungkwan</td></tr>
+
+        </tbody>
+
+      </table>
+
+    </section>
+
+
+
+    <section id="music">
+
+      <h2>🎶 SEVENTEEN's Top Songs</h2>
+
+      <ul class="songlist">
+
+        <li>Don't Wanna Cry</li>
+
+        <li>Very Nice (아주 NICE)</li>
+
+        <li>Hot</li>
+
+        <li>Left & Right</li>
+
+        <li>Super</li>
+
+        <li>Clap</li>
+
+        <li>Ready to Love</li>
+
+        <li>Circles</li>
+
+      </ul>
+
+      <h3>🎧 MAESTRO </h3>
+
+      <audio controls>
+
+        <source src="https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3" type="audio/mp3">
+
+        Your browser does not support the audio element.
+
+      </audio>
+
+    </section>
+
+
+
+    <section id="videos">
+
+      <h2>🎥 Music Video</h2>
+
+      <video width="500" controls>
+
+        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4" type="video/mp4">
+
+        Your browser does not support the video tag.
+
+      </video>
+
+    </section>
+
+
+
+    <section id="message">
+
+      <h2>💌 Send a Message to SEVENTEEN 💌</h2>
+
+      <form>
+
+        <label for="member">To (Member Name):</label>
+
+        <input type="text" id="member" name="member" placeholder="e.g., Hoshi, DK, Woozi" required>
+
+        <label for="messageText">Your Message:</label>
+
+        <textarea id="messageText" name="message" rows="6" placeholder="Write your love and support here 💖" required></textarea>
+
+        <button type="submit">Send Message ✨</button>
+
+      </form>
+
+
+
+      <h2>📞 Contact Fanbase</h2>
+
+      <p>Follow SEVENTEEN on 
+
+        <a href="https://instagram.com/saythename_17" target="_blank">Instagram</a> or 
+
+        <a href="https://weverse.io/seventeen" target="_blank">Weverse</a>.
+
+      </p>
+
+      <p>Learn more on 
+
+        <a href="https://en.wikipedia.org/wiki/Seventeen_(South_Korean_band)" target="_blank">Wikipedia</a>.
+
+      </p>
+
+    </section>
+
+
+
+    <section id="register">
+
+      <h2>📝 Online Registration Form</h2>
+
+      <form action="/serverlogic" method="post">
+
+        <label for="name">Full Name:</label>
+
+        <input type="text" id="name" name="name" required placeholder="Your Name" autofocus/>
+
+
+
+        <label for="email">Email:</label>
+
+        <input type="email" id="email" name="email" required placeholder="you@example.com"/>
+
+
+
+        <label for="dob">Date of Birth:</label>
+
+        <input type="date" id="dob" name="dob" required/>
+
+
+
+        <label for="tel">Phone Number:</label>
+
+        <input type="tel" id="tel" name="tel" pattern="[0-9]{10}" required placeholder="10-digit number"/>
+
+
+
+        <label for="favsong">Favorite Song:</label>
+
+        <input type="search" id="favsong" name="favsong" placeholder="Search your favorite song"/>
+
+
+
+        <label for="url">Fan Blog URL:</label>
+
+        <input type="url" id="url" name="url" placeholder="https://yourfanblog.com"/>
+
+
+
+        <label for="upload">Upload Artwork:</label>
+
+        <input type="file" id="upload" name="upload" required/>
+
+
+
+        <label for="message">Why do you love this artist?</label>
+
+        <textarea id="message" name="message" required placeholder="Write your reason here..."></textarea>
+
+
+
+        <label for="rating">Fan Passion Meter:</label>
+
+        <progress id="rating" value="80" max="100">80%</progress>
+
+
+
+        <br><br>
+
+        <button type="submit">Submit</button>
+
+        <button type="reset">Reset</button>
+
+      </form>
+
+    </section>
+
+
+
+    <footer>
+
+      <p>&copy; 2025 SEVENTEEN Fan Page | Created with 💜 by a Carat</p>
+
+    </footer>
+
+  </div>
+
+
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+      const loginContainer = document.getElementById('login-container');
+
+      const mainContent = document.getElementById('main-content');
+
+      const loginForm = document.getElementById('login-form');
+
+      const body = document.body;
+
+
+
+      // When the form is submitted
+
+      loginForm.addEventListener('submit', (event) => {
+
+        event.preventDefault(); // Stop the form from refreshing the page
+
+        loginContainer.style.display = 'none'; // Hide the login page
+
+        mainContent.style.display = 'block'; // Show the main fan page
+
+        body.classList.add('fan-page-active'); // Apply the fan page background and layout
+
+      });
+
+
+
+      const links = document.querySelectorAll('nav a');
+
+      links.forEach(link => {
+
+        link.addEventListener('click', (event) => {
+
+          event.preventDefault();
+
+          const targetId = link.getAttribute('href').substring(1);
+
+          const sections = document.querySelectorAll('section');
+
+          sections.forEach(section => {
+
+            section.classList.remove('active');
+
+          });
+
+          document.getElementById(targetId).classList.add('active');
+
+        });
+
+      });
+
+      
+
+      // Initially show the first section of the fan page after login
+
+      document.getElementById('carat').classList.add('active');
+
+    });
+
+  </script>
+
+
 
 </body>
+
 </html>
