@@ -5,16 +5,21 @@
   <title>SEVENTEEN – Carat Fan Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    /* --- Login Page Styles --- */
+    /* --- General Body and Font Styles --- */
     body {
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background: url('#SEVENTEEN.jpg') no-repeat center center/cover;
+      transition: background 0.5s ease-in-out; /* Smooth transition for background change */
+    }
+
+    /* --- Login Page Styles --- */
+    #login-container {
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      background: url('SEVENTEEN.jpg') no-repeat center center/cover; /* Corrected image URL */
     }
 
     .login-box {
@@ -59,23 +64,24 @@
       background: #ff6fa9;
     }
 
-    /* --- Fan Page Styles --- */
+    /* --- Fan Page Styles (after login) --- */
     body.fan-page-active {
-      background: linear-gradient(to right, #ffd1dc, #cceeff);
+      background: linear-gradient(to right, #ffd1dc, #cceeff); /* Gradient background for fan page */
       color: #333;
       height: auto;
       display: block;
     }
-    
+
     #main-content {
-        display: none;
+      display: none; /* Initially hide main content */
     }
-    
+
     header, footer {
       background-color: #ffffffaa;
       text-align: center;
       padding: 1rem;
     }
+    
     nav ul {
       list-style: none;
       display: flex;
@@ -84,78 +90,73 @@
       gap: 1rem;
       padding: 0;
     }
+    
     nav a {
       text-decoration: none;
       color: #8e24aa;
       font-weight: bold;
       cursor: pointer;
     }
+    
     nav a:hover {
       color: #c2185b;
     }
+    
     section {
-      display: none;
+      display: none; /* Hide all sections by default */
       padding: 2rem;
       text-align: center;
     }
+    
     section.active {
-      display: block;
+      display: block; /* Show the active section */
     }
+    
     img.main-img {
       max-width: 90%;
       border-radius: 12px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
       margin: 20px auto;
     }
+    
     table {
       width: 80%;
       margin: 2rem auto;
       border-collapse: collapse;
       background: #fff9fa;
     }
+    
     th, td {
       border: 1px solid #aaa;
       padding: 12px;
       text-align: center;
     }
+    
     th {
       background-color: #f8bbd0;
       color: #6a1b9a;
     }
+    
     ul.songlist {
       text-align: left;
       max-width: 600px;
       margin: 0 auto;
       list-style-type: square;
     }
-    form input, form textarea, form select {
-      width: 100%;
-      max-width: 500px;
-      padding: 10px;
-      margin: 10px 0;
-    }
-    button {
-      padding: 10px 20px;
-      margin-top: 10px;
-      background: #c2185b;
-      color: white;
-      border: none;
-      border-radius: 5px;
-    }
-
+    
     form {
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 20px;
     }
-
+    
     form label {
       align-self: flex-start;
       margin-top: 10px;
       font-weight: bold;
     }
-
+    
     form input,
     form textarea,
     form select {
@@ -166,53 +167,57 @@
       border: 1px solid #ccc;
       border-radius: 5px;
     }
-
+    
     form progress {
       width: 100%;
       max-width: 500px;
       height: 15px;
       border-radius: 8px;
     }
-
-    form button {
-      margin: 10px 10px 0 10px;
+    
+    button, .login-box input[type="submit"] {
       padding: 10px 20px;
+      margin: 10px 10px 0 10px;
       background: #c2185b;
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      transition: background-color 0.3s;
     }
-
-    form button:hover {
+    
+    button:hover {
       background-color: #a3154d;
     }
     
+    /* --- About Section Specific Styles --- */
     #about {
-      padding: 2rem;
       text-align: left;
-      color: #222;
     }
+    
     #about .about-container {
       max-width: 900px;
       margin: 0 auto;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255, 255, 255, 0.9);
       padding: 24px;
       border-radius: 10px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
     }
+    
     #about h2 { text-align: center; color: #6a1b9a; }
     #about h3 { color: #8e24aa; margin-top: 1rem; }
     #about p { line-height: 1.6; margin: 0.6rem 0; }
     #about ul { margin-left: 1.25rem; }
+    
     .member-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 12px;
       margin-top: 0.5rem;
     }
-    /* small-screen tweaks */
-    @media (max-width:600px){
+    
+    /* --- Responsive design for smaller screens --- */
+    @media (max-width: 600px) {
       #about .about-container { padding: 16px; }
     }
   </style>
@@ -260,7 +265,6 @@
           they have reached a large audience and grown into an internationally recognized K-pop group
           known for signature music and performances.
         </p>
-
         <h3>Debut & Major Records</h3>
         <p>
           The group debuted on <strong>May 26, 2015</strong>, with the EP <em>17 Carat</em>, which became
@@ -269,7 +273,6 @@
           <em>Seventeenth Heaven</em> set sales records; <em>FML</em> brought their first MAMA Album of
           the Year and became one of the year's best-selling albums worldwide.
         </p>
-
         <h3>Self-Producing Identity</h3>
         <p>
           Seventeen is widely regarded as a "self-producing" idol group — members contribute to songwriting,
@@ -277,14 +280,12 @@
           vocal, and performance, while also promoting as a full group. Their stage work and synchronization
           have earned them nicknames such as "Performance Kings" and "Kings of Synchronization."
         </p>
-
         <h3>Name & Fanclub</h3>
         <p>
           The name "Seventeen" comes from the idea <em>"13 members + 3 teams + 1 group"</em>. Their official
           fanclub name is <strong>Carat</strong>, announced on February 14, 2016 — a nod to their debut EP
           <em>17 Carat</em> and the song "Shining Diamond".
         </p>
-
         <h3>History — Highlights</h3>
         <p><strong>Pre-debut & debut (2013–2016):</strong> appeared on Seventeen TV and the reality show
           <em>Seventeen Project: Big Debut Plan</em>. Official debut: May 26, 2015. Releases: <em>17 Carat</em>,
@@ -321,39 +322,33 @@
             Hoshi (unit leader), Jun, The8, Dino
           </div>
         </div>
-
         <h3>Sub-units & Solo Work</h3>
         <p>
           Notable sub-units include <strong>BSS (BooSeokSoon)</strong>, <strong>JxW</strong>, and
           the duo <strong>Hoshi X Woozi</strong>. Members also participate in solo projects and the
           ongoing "Thirteen Tapes" releases.
         </p>
-
         <h3>Artistry & Choreography</h3>
         <p>
           Seventeen's musical identity is shaped by heavy member involvement in writing and producing (notably
           Woozi) and elaborate choreographies often co-produced by Hoshi. Their lyrics frequently touch on
           relatable themes like growth, perseverance, and comfort.
         </p>
-
         <h3>Other Ventures & Endorsements</h3>
         <p>
           Seventeen have collaborated with global brands (Apple, Cigna, Lazada, Bibigo, etc.), acted as ambassadors,
           and appeared in major campaigns and endorsements across Asia and internationally.
         </p>
-
         <h3>Philanthropy & UNESCO</h3>
         <p>
           The group regularly donates to charitable causes and partners with UNESCO for education initiatives.
           In 2023 they were named UNESCO Goodwill Ambassadors for Youth and pledged support for global youth projects.
         </p>
-
         <h3>Awards & Recognition</h3>
         <p>
           Multiple domestic and international awards, including MAMA Album of the Year (for 2023 & 2024 albums),
           Prime Minister's Commendation, MTV recognitions, and many year-end Bonsang/Daesang awards.
         </p>
-
         <h3>Selected Discography (Studio Albums)</h3>
         <ul>
           <li>Love & Letter (2016)</li>
@@ -362,7 +357,6 @@
           <li>Face the Sun (2022)</li>
           <li>Happy Burstday (2025)</li>
         </ul>
-
         <h3>Major Tours</h3>
         <ul>
           <li>Shining Diamonds Tour (2016)</li>
@@ -372,7 +366,6 @@
           <li>Right Here World Tour (2024–2025)</li>
           <li>New_ World Tour (2025)</li>
         </ul>
-
         <p style="margin-top: 1rem;">
           <em>Note:</em> This section condenses a long biography/history. If you want the full long article split
           into subsections with "read more" <a href="https://en.wikipedia.org/wiki/Seventeen_(South_Korean_band)">https://en.wikipedia.org/wiki/Seventeen_(South_Korean_band)</a>.
@@ -451,11 +444,11 @@
       </form>
 
       <h2>📞 Contact Fanbase</h2>
-      <p>Follow SEVENTEEN on 
-        <a href="https://instagram.com/saythename_17" target="_blank">Instagram</a> or 
+      <p>Follow SEVENTEEN on
+        <a href="https://instagram.com/saythename_17" target="_blank">Instagram</a> or
         <a href="https://weverse.io/seventeen" target="_blank">Weverse</a>.
       </p>
-      <p>Learn more on 
+      <p>Learn more on
         <a href="https://en.wikipedia.org/wiki/Seventeen_(South_Korean_band)" target="_blank">Wikipedia</a>.
       </p>
     </section>
@@ -465,31 +458,22 @@
       <form action="/serverlogic" method="post">
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="name" required placeholder="Your Name" autofocus/>
-
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required placeholder="you@example.com"/>
-
         <label for="dob">Date of Birth:</label>
         <input type="date" id="dob" name="dob" required/>
-
         <label for="tel">Phone Number:</label>
         <input type="tel" id="tel" name="tel" pattern="[0-9]{10}" required placeholder="10-digit number"/>
-
         <label for="favsong">Favorite Song:</label>
         <input type="search" id="favsong" name="favsong" placeholder="Search your favorite song"/>
-
         <label for="url">Fan Blog URL:</label>
         <input type="url" id="url" name="url" placeholder="https://yourfanblog.com"/>
-
         <label for="upload">Upload Artwork:</label>
         <input type="file" id="upload" name="upload" required/>
-
         <label for="message">Why do you love this artist?</label>
         <textarea id="message" name="message" required placeholder="Write your reason here..."></textarea>
-
         <label for="rating">Fan Passion Meter:</label>
         <progress id="rating" value="80" max="100">80%</progress>
-
         <br><br>
         <button type="submit">Submit</button>
         <button type="reset">Reset</button>
@@ -508,32 +492,36 @@
       const loginForm = document.getElementById('login-form');
       const body = document.body;
 
-      // When the form is submitted
+      // When the login form is submitted
       loginForm.addEventListener('submit', (event) => {
-        event.preventDefault(); // Stop the form from refreshing the page
+        event.preventDefault(); // Prevents the default form submission (page refresh)
         loginContainer.style.display = 'none'; // Hide the login page
         mainContent.style.display = 'block'; // Show the main fan page
         body.classList.add('fan-page-active'); // Apply the fan page background and layout
       });
 
+      // Handle navigation clicks to show/hide sections
       const links = document.querySelectorAll('nav a');
       links.forEach(link => {
         link.addEventListener('click', (event) => {
           event.preventDefault();
           const targetId = link.getAttribute('href').substring(1);
           const sections = document.querySelectorAll('section');
+          
+          // Remove 'active' class from all sections
           sections.forEach(section => {
             section.classList.remove('active');
           });
+          
+          // Add 'active' class to the targeted section
           document.getElementById(targetId).classList.add('active');
         });
       });
       
-      // Initially show the first section of the fan page after login
+      // Initially show the first section of the fan page
       document.getElementById('carat').classList.add('active');
     });
   </script>
 
 </body>
 </html>
-
